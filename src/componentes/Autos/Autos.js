@@ -4,23 +4,23 @@ import axios from "axios";
 import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
-class Alquileres extends Component {
+class Autos extends Component {
     state = {
-        alquileres: [],
+        autos: [],
         status: null
     }
 
     componentWillMount() {
-        this.mostrarAlquileres();
+        this.mostrarAutos();
     }
 
-    mostrarAlquileres = () => {
-        axios.get("http://localhost:3000/api/mostrarAlquileres")
+    mostrarAutos = () => {
+        axios.get("http://localhost:3000/api/mostrarAutos")
             .then(res => {
-                console.log("Alquileres");
+                console.log("Autos");
                 console.log(res.data.data);
                 this.setState({
-                    alquileres: res.data.data
+                    autos: res.data.data
                 });
             })
             .catch(error => {
@@ -28,8 +28,8 @@ class Alquileres extends Component {
             })
     }
 
-    eliminarAlquiler = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
+    eliminarAuto = (id) => {
+        axios.delete("http://localhost:3000/api/eliminarAuto/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -38,45 +38,47 @@ class Alquileres extends Component {
                 //window.location.reload(true);
 
                 swal(
-                    "Alquiler Eliminado",
-                    "El Alquiler se Elimino Correctamente",
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
                     "success"
                 )
             })
     }
     render() {
         // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarAlquileres" />
+        //     return <Navigate to="/mostrarAutos" />
         // }                        
-        console.log(this.state.alquileres);
+        console.log(this.state.autos);
         return (
             <React.Fragment>
-                <h1>Alquileres</h1>
-                <Link to="/agregarAlquiler" className="btn btn-dark">Agregar Alquiler</Link>
+                <h1>Autos</h1>
+                <Link to="/agregarAuto" className="btn btn-dark">Agregar Auto</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha Entrega</td>
-                            <td>Fecha Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Nombre</td>
+                            <td>Marca</td>
+                            <td>Año</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.alquileres.map((alquiler) => {
+                            this.state.autos.map((auto) => {
                                 return (
                                     <React.Fragment>
                                         <tr>
-                                            <td>{alquiler._id}</td>
-                                            <td>{alquiler.fechaEntrega}</td>
-                                            <td>{alquiler.fechaDevolucion}</td>
-                                            <td>{alquiler.estatus}</td>
+                                            <td>{auto._id}</td>
+                                            <td>{auto.nombre}</td>
+                                            <td>{auto.marca}</td>
+                                            <td>{auto.ahno}</td>
+                                            <td>{auto.descripcion}</td>
                                             <td>
-                                                <Link to={"/editarAlquiler/" + alquiler._id} className="btn btn-success">Editar</Link>
+                                                <Link to={"/editarAuto/" + auto._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarAlquiler(alquiler._id)                                                        
+                                                        this.eliminarAuto(auto._id)                                                        
                                                     }
                                                 }>
                                                     Eliminar
@@ -94,4 +96,4 @@ class Alquileres extends Component {
     }
 }
 
-export default Alquileres;
+export default Autos;

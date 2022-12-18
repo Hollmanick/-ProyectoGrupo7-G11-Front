@@ -4,23 +4,23 @@ import axios from "axios";
 import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
-class Alquileres extends Component {
+class Scores extends Component {
     state = {
-        alquileres: [],
+        scores: [],
         status: null
     }
 
     componentWillMount() {
-        this.mostrarAlquileres();
+        this.mostrarScores();
     }
 
-    mostrarAlquileres = () => {
-        axios.get("http://localhost:3000/api/mostrarAlquileres")
+    mostrarScores = () => {
+        axios.get("http://localhost:3000/api/mostrarScores")
             .then(res => {
-                console.log("Alquileres");
+                console.log("Scores");
                 console.log(res.data.data);
                 this.setState({
-                    alquileres: res.data.data
+                    scores: res.data.data
                 });
             })
             .catch(error => {
@@ -28,8 +28,8 @@ class Alquileres extends Component {
             })
     }
 
-    eliminarAlquiler = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
+    eliminarScore = (id) => {
+        axios.delete("http://localhost:3000/api/eliminarScore/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -38,45 +38,43 @@ class Alquileres extends Component {
                 //window.location.reload(true);
 
                 swal(
-                    "Alquiler Eliminado",
-                    "El Alquiler se Elimino Correctamente",
+                    "Score Eliminado",
+                    "El Score se Elimino Correctamente",
                     "success"
                 )
             })
     }
     render() {
         // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarAlquileres" />
+        //     return <Navigate to="/mostrarScores" />
         // }                        
-        console.log(this.state.alquileres);
+        console.log(this.state.scores);
         return (
             <React.Fragment>
-                <h1>Alquileres</h1>
-                <Link to="/agregarAlquiler" className="btn btn-dark">Agregar Alquiler</Link>
+                <h1>Scores</h1>
+                <Link to="/agregarScore" className="btn btn-dark">Agregar Score</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha Entrega</td>
-                            <td>Fecha Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Score</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.alquileres.map((alquiler) => {
+                            this.state.scores.map((score) => {
                                 return (
                                     <React.Fragment>
                                         <tr>
-                                            <td>{alquiler._id}</td>
-                                            <td>{alquiler.fechaEntrega}</td>
-                                            <td>{alquiler.fechaDevolucion}</td>
-                                            <td>{alquiler.estatus}</td>
+                                            <td>{score._id}</td>
+                                            <td>{score.score}</td>
+                                            <td>{score.descripcion}</td>
                                             <td>
-                                                <Link to={"/editarAlquiler/" + alquiler._id} className="btn btn-success">Editar</Link>
+                                                <Link to={"/editarScore/" + score._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarAlquiler(alquiler._id)                                                        
+                                                        this.eliminarScore(score._id)
                                                     }
                                                 }>
                                                     Eliminar
@@ -94,4 +92,4 @@ class Alquileres extends Component {
     }
 }
 
-export default Alquileres;
+export default Scores;

@@ -4,23 +4,23 @@ import axios from "axios";
 import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
-class Alquileres extends Component {
+class Categorias extends Component {
     state = {
-        alquileres: [],
+        categorias: [],
         status: null
     }
 
     componentWillMount() {
-        this.mostrarAlquileres();
+        this.mostrarCategorias();
     }
 
-    mostrarAlquileres = () => {
-        axios.get("http://localhost:3000/api/mostrarAlquileres")
+    mostrarCategorias = () => {
+        axios.get("http://localhost:3000/api/mostrarCategorias")
             .then(res => {
-                console.log("Alquileres");
+                console.log("Categorias");
                 console.log(res.data.data);
                 this.setState({
-                    alquileres: res.data.data
+                    categorias: res.data.data
                 });
             })
             .catch(error => {
@@ -28,8 +28,8 @@ class Alquileres extends Component {
             })
     }
 
-    eliminarAlquiler = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
+    eliminarCategoria = (id) => {
+        axios.delete("http://localhost:3000/api/eliminarCategoria/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -38,45 +38,43 @@ class Alquileres extends Component {
                 //window.location.reload(true);
 
                 swal(
-                    "Alquiler Eliminado",
-                    "El Alquiler se Elimino Correctamente",
+                    "Categoria Eliminado",
+                    "El Categoria se Elimino Correctamente",
                     "success"
                 )
             })
     }
     render() {
         // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarAlquileres" />
+        //     return <Navigate to="/mostrarCategorias" />
         // }                        
-        console.log(this.state.alquileres);
+        console.log(this.state.categorias);
         return (
             <React.Fragment>
-                <h1>Alquileres</h1>
-                <Link to="/agregarAlquiler" className="btn btn-dark">Agregar Alquiler</Link>
+                <h1>Categorias</h1>
+                <Link to="/agregarCategoria" className="btn btn-dark">Agregar Categoria</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha Entrega</td>
-                            <td>Fecha Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Nombre</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.alquileres.map((alquiler) => {
+                            this.state.categorias.map((categoria) => {
                                 return (
                                     <React.Fragment>
                                         <tr>
-                                            <td>{alquiler._id}</td>
-                                            <td>{alquiler.fechaEntrega}</td>
-                                            <td>{alquiler.fechaDevolucion}</td>
-                                            <td>{alquiler.estatus}</td>
+                                            <td>{categoria._id}</td>
+                                            <td>{categoria.nombre}</td>
+                                            <td>{categoria.descripcion}</td>
                                             <td>
-                                                <Link to={"/editarAlquiler/" + alquiler._id} className="btn btn-success">Editar</Link>
+                                                <Link to={"/editarCategoria/" + categoria._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarAlquiler(alquiler._id)                                                        
+                                                        this.eliminarCategoria(categoria._id)
                                                     }
                                                 }>
                                                     Eliminar
@@ -94,4 +92,4 @@ class Alquileres extends Component {
     }
 }
 
-export default Alquileres;
+export default Categorias;

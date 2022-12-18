@@ -71,16 +71,16 @@ class EditarAlquiler extends Component {
                 <h1>Editar Alquiler</h1>
                 <form onSubmit={this.editarAlquiler}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
+                        <label for="fechaEntrega" className="form-label">Fecha Entrega</label>
                         <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.alquiler.fechaEntrega} ref={this.fechaEntrega} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
+                        <label for="fechaDevolucion" className="form-label">Fecha Devolucion</label>
                         <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.alquiler.fechaDevolucion} ref={this.fechaDevolucion} />
                     </div>
                     <div className="mb-3">
                         <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.alquiler.estatus} ref={this.estatus} />
+                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Digite el estatus del alquiler (Completo o Cancelado)" defaultValue={this.state.alquiler.estatus} ref={this.estatus} />
                     </div>
                     <input type="submit" className="btn btn-primary" />
                 </form>

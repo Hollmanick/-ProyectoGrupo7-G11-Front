@@ -14,7 +14,7 @@ class AgregarAlquiler extends React.Component {
 
     changeState = () => {
         this.setState({
-            alquiler: {                
+            alquiler: {
                 "fechaEntrega": this.fechaEntrega.current.value,
                 "fechaDevolucion": this.fechaDevolucion.current.value,
                 "estatus": this.estatus.current.value
@@ -65,19 +65,19 @@ class AgregarAlquiler extends React.Component {
         }
         return (
             <React.Fragment>
-                <h1>AgregarAlquiler</h1>
+                <h1>Agregar Alquiler</h1>
                 <form onSubmit={this.agregarAlquiler}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
+                        <label for="fechaEntrega" className="form-label">Fecha Entrega</label>
                         <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" name="fechaEntrega" ref={this.fechaEntrega} onChange={this.changeState} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
+                        <label for="fechaDevolucion" className="form-label">Fecha Devolucion</label>
                         <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" name="fechaDevolucion" ref={this.fechaDevolucion} onChange={this.changeState} />
                     </div>
                     <div className="mb-3">
                         <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" placeholder="Ingrese estatus Completo o Cancelado" name="estatus" ref={this.estatus} onChange={this.changeState} />
+                        <input type="text" className="form-control" id="estatus" placeholder="Digite el estatus del alquiler (Completo o Cancelado)" name="estatus" ref={this.estatus} onChange={this.changeState} />
                     </div>
                     <input type="submit" className="btn btn-primary" />
                 </form>
