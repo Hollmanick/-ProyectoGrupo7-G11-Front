@@ -33,26 +33,24 @@ class Alquileres extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });                
 
                 swal(
                     "Alquiler Eliminado",
                     "El Alquiler se Elimino Correctamente",
-                    "success"
+                    "success"                                                
                 )
+                
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarAlquileres" />
-        // }                        
+    render() {                             
         console.log(this.state.alquileres);
         return (
             <React.Fragment>
-                <h1>Alquileres</h1>
-                <Link to="/agregarAlquiler" className="btn btn-dark">Agregar Alquiler</Link>
+                <h1>Listado de Alquileres</h1>
+                <br />
+                <Link to="/agregarAlquiler" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Alquiler</Link>
                 <table className="table">
                     <thead>
                         <tr>

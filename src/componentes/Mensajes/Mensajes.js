@@ -33,26 +33,24 @@ class Mensajes extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Mensaje Eliminado",
-                    "El Mensaje se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarMensajes" />
-        // }                        
+    render() {                     
         console.log(this.state.mensajes);
         return (
             <React.Fragment>
-                <h1>Mensajes</h1>
-                <Link to="/agregarMensaje" className="btn btn-dark">Agregar Mensaje</Link>
+                <h1>Listado de Mensajes</h1>
+                <br />
+                <Link to="/agregarMensaje" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Mensaje</Link>
                 <table className="table">
                     <thead>
                         <tr>

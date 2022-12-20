@@ -33,26 +33,24 @@ class Scores extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Score Eliminado",
-                    "El Score se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarScores" />
-        // }                        
+    render() {                      
         console.log(this.state.scores);
         return (
             <React.Fragment>
-                <h1>Scores</h1>
-                <Link to="/agregarScore" className="btn btn-dark">Agregar Score</Link>
+                <h1>Listado de Scores</h1>
+                <br />
+                <Link to="/agregarScore" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Score</Link>
                 <table className="table">
                     <thead>
                         <tr>

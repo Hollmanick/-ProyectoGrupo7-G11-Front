@@ -72,7 +72,7 @@ class AgregarCategoria extends React.Component {
                         <label for="descripcion" className="form-label">Descripcion</label>
                         <input type="text" className="form-control" id="descripcion" placeholder="Digite la descripcion de la categoria" name="descripcion" ref={this.descripcion} onChange={this.changeState} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         )

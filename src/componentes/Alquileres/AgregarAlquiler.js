@@ -79,7 +79,7 @@ class AgregarAlquiler extends React.Component {
                         <label for="estatus" className="form-label">Estatus</label>
                         <input type="text" className="form-control" id="estatus" placeholder="Digite el estatus del alquiler (Completo o Cancelado)" name="estatus" ref={this.estatus} onChange={this.changeState} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         )

@@ -88,7 +88,7 @@ class AgregarCliente extends React.Component {
                         <label for="edad" className="form-label">Edad</label>
                         <input type="number" className="form-control" id="edad" placeholder="Digite la edad del cliente" name="edad" ref={this.edad} onChange={this.changeState} />
                     </div>                    
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         )

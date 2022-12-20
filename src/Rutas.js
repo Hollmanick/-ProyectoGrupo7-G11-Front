@@ -18,15 +18,14 @@ import EditarMensaje from "./componentes/Mensajes/EditarMensaje";
 import Scores from "./componentes/Scores/Scores";
 import AgregarScore from "./componentes/Scores/AgregarScore";
 import EditarScore from "./componentes/Scores/EditarScore";
-import Menu from "./componentes/Menu";
+import Carrusel from "./componentes/Carrusel";
 
 class Rutas extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <Menu />
+            <BrowserRouter>               
                 <Routes>
-                    <Route path="/" element={<div>GRUPO7-G11</div>} />
+                    <Route path="/" element={<div><h2>PROYECTO FINAL CICLO 4 MINTIC GRUPO7-G11</h2><Carrusel /></div>} />
                     <Route path="/mostrarAlquileres" element={<Alquileres />} />
                     <Route path="/agregarAlquiler" element={<AgregarAlquiler />} />
                     <Route path="/editarAlquiler/:id" element={<EditarAlquiler />} />

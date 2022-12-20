@@ -75,7 +75,7 @@ class EditarScore extends Component {
                         <label for="descripcion" className="form-label">Descripcion</label>
                         <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Digite la descripcion del score" defaultValue={this.state.score.descripcion} ref={this.descripcion} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

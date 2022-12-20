@@ -33,26 +33,24 @@ class Autos extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
                     "Auto Eliminado",
                     "El Auto se Elimino Correctamente",
-                    "success"
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarAutos" />
-        // }                        
+    render() {                      
         console.log(this.state.autos);
         return (
             <React.Fragment>
-                <h1>Autos</h1>
-                <Link to="/agregarAuto" className="btn btn-dark">Agregar Auto</Link>
+                <h1>Listado de Autos</h1>
+                <br />
+                <Link to="/agregarAuto" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Auto</Link>
                 <table className="table">
                     <thead>
                         <tr>

@@ -89,7 +89,7 @@ class EditarCliente extends Component {
                         <label for="edad" className="form-label">Edad</label>
                         <input type="number" className="form-control" id="edad" aria-describedby="emailHelp" placeholder="Digite la edad del cliente" defaultValue={this.state.cliente.edad} ref={this.edad} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

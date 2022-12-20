@@ -82,7 +82,7 @@ class EditarAlquiler extends Component {
                         <label for="estatus" className="form-label">Estatus</label>
                         <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Digite el estatus del alquiler (Completo o Cancelado)" defaultValue={this.state.alquiler.estatus} ref={this.estatus} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

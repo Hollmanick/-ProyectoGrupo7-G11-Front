@@ -1,11 +1,12 @@
 import React from "react";
+import LogoutButton from "./Logout";
 
-class Menu extends React.Component {
+class MenuLogin extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark .navbar-nav">
                 <div className="container-fluid">
-                   <a className="navbar-brand" href="/">Grupo7-G11</a> 
+                    <a className="navbar-brand" href="/">Grupo7-G11</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarDropdownnavbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -73,8 +74,9 @@ class Menu extends React.Component {
                             </li>
                         </ul>
                         <form className="d-flex">
+                            <button className="btn btn-outline-danger form-control me-2" type="submit"><LogoutButton /></button>
                             <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
-                            <button className="btn btn-outline-success" type="submit">Buscar</button>
+                            <button className="btn btn-outline-info" type="submit">Buscar</button>
                         </form>
                     </div>
                 </div>
@@ -83,4 +85,4 @@ class Menu extends React.Component {
     }
 }
 
-export default Menu;
+export default MenuLogin;

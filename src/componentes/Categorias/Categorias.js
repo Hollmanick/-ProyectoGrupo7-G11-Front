@@ -33,26 +33,24 @@ class Categorias extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Categoria Eliminado",
-                    "El Categoria se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarCategorias" />
-        // }                        
+    render() {                       
         console.log(this.state.categorias);
         return (
             <React.Fragment>
-                <h1>Categorias</h1>
-                <Link to="/agregarCategoria" className="btn btn-dark">Agregar Categoria</Link>
+                <h1>Listado de Categorias</h1>
+                <br />
+                <Link to="/agregarCategoria" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Categoria</Link>
                 <table className="table">
                     <thead>
                         <tr>

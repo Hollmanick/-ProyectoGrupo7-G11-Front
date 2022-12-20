@@ -33,26 +33,24 @@ class Clientes extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Cliente Eliminado",
-                    "El Cliente se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
-        // if (this.state.status === "delete") {
-        //     return <Navigate to="/mostrarClientes" />
-        // }                        
+    render() {                    
         console.log(this.state.clientes);
         return (
             <React.Fragment>
-                <h1>Clientes</h1>
-                <Link to="/agregarCliente" className="btn btn-dark">Agregar Cliente</Link>
+                <h1>Listado de Clientes</h1>
+                <br />
+                <Link to="/agregarCliente" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Cliente</Link>
                 <table className="table">
                     <thead>
                         <tr>
