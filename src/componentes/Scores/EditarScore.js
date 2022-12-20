@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -61,6 +62,11 @@ class EditarScore extends Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Score Editado",
+                "El Score se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarScores" />
         }
         return (

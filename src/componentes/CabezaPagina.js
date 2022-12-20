@@ -4,10 +4,10 @@ class CabezaPagina extends React.Component {
     render() {
         return (
             <div>
-                <h1><strong>Alquiler de carros en Bogotá Colombia</strong></h1>
-                <img data-src="https://storage.googleapis.com/alquilatucarrocom/images/carros.png" class="img-fluid mx-auto lazyloaded" title="alquiler de carros en Bogotá" alt="alquiler de carros en Bogotá" src="https://storage.googleapis.com/alquilatucarrocom/images/carros.png" />
+                <h1><strong>Alquiler de carros en Colombia</strong></h1>
+                <img data-src="https://storage.googleapis.com/alquilatucarrocom/images/carros.png" class="img-fluid mx-auto lazyloaded" title="alquiler de carros en Colombia" alt="alquiler de carros en Bogotá" src="https://storage.googleapis.com/alquilatucarrocom/images/carros.png" />
 
-                <p>En Alquilatucarro rent a car Bogotá, tomar un servicio de alquiler de vehiculos es sencillo, únicamente necesita su Cédula o documento de identidad, su licencia de conducir y su tarjeta visa o mastercard con cupo disponible. con esto su alquiler de carros en Bogotá estará listo. Le damos la bienvenida para que se convierta en nuestro siguiente cliente satisfecho ya que contamos con varios años ofreciendo el más bajo precio en el alquiler de carros. Realice la reserva de su coche sin pagos anticipados (No requiere dinero para reservar), le ofrecemos autos para estrenar ya que renovamos nuestros autos cada dos años para que pueda conocer nuestra hermosa ciudad de Bogotá, tranquilo y confortable en sus traslados de trabajo o viaje de turismo.</p>
+                <p>En Grupo Seven tomar un servicio de alquiler de vehiculos es sencillo, únicamente necesita su licencia de conducción y registrarse en nuestra pagina. Con esto su alquiler de carros en Colombia estará listo. Le damos la bienvenida para que se convierta en nuestro siguiente cliente satisfecho ya que contamos con el más bajo precio en el mercado de alquiler de carros. Realice la reserva de su coche sin pagos anticipados (No requiere dinero para reservar), le ofrecemos autos para estrenar en los que podra conocer nuestro hermoso pais, tranquilo y confortable en sus traslados de trabajo o viaje de turismo.</p>
 
                 <div class="row">
                     <div class="col-md"></div>

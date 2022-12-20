@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarCliente extends React.Component {    
@@ -66,6 +67,11 @@ class AgregarCliente extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Cliente Agregado",
+                "El Cliente se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarClientes" />
         }
         return (

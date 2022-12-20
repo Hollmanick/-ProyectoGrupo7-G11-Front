@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -60,10 +61,15 @@ class EditarAlquiler extends Component {
             })
             .catch(function (error) {
                 console.log(error)
-            })
+            })            
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Alquiler Editado",
+                "El Alquiler se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarAlquileres" />
         }
         return (

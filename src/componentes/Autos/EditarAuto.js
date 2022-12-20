@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -67,6 +68,11 @@ class EditarAuto extends Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Auto Editado",
+                "El Auto se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarAutos" />
         }
         return (

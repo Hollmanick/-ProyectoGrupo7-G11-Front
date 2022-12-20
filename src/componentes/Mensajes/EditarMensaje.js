@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -61,6 +62,11 @@ class EditarMensaje extends Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Mensaje Editado",
+                "El Mensaje se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarMensajes" />
         }
         return (

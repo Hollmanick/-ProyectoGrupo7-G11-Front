@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarMensaje extends React.Component {
@@ -58,6 +59,11 @@ class AgregarMensaje extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Mensaje Agregado",
+                "El Mensaje se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarMensajes" />
         }
         return (

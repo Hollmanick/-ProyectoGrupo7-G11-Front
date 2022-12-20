@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarAuto extends React.Component {
@@ -64,6 +65,11 @@ class AgregarAuto extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Auto Agregado",
+                "El Auto se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarAutos" />
         }
         return (

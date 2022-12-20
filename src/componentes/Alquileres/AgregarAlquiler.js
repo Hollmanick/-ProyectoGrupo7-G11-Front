@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarAlquiler extends React.Component {
@@ -61,6 +62,11 @@ class AgregarAlquiler extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Alquiler Agregado",
+                "El Alquiler se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarAlquileres" />
         }
         return (

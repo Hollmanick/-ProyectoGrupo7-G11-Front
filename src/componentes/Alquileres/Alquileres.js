@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
+import EliminarAlquiler from "./EliminarAlquiler";
 
 class Alquileres extends Component {
     state = {
@@ -28,22 +29,22 @@ class Alquileres extends Component {
             })
     }
 
-    eliminarAlquiler = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
-            .then(res => {
-                this.setState({
-                    status: "delete"
-                });                
+    // eliminarAlquiler = (id) => {
+    //     axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
+    //         .then(res => {
+    //             this.setState({
+    //                 status: "delete"
+    //             });                
 
-                swal(
-                    "Alquiler Eliminado",
-                    "El Alquiler se Elimino Correctamente",
-                    "success"                                                
-                )
+    //             swal(
+    //                 "Alquiler Eliminado",
+    //                 "El Alquiler se Elimino Correctamente",
+    //                 "success"                                                
+    //             )
                 
-                // window.location.reload(true)
-            })
-    }
+    //             // window.location.reload(true)
+    //         })
+    // }
     render() {                             
         console.log(this.state.alquileres);
         return (
@@ -72,9 +73,10 @@ class Alquileres extends Component {
                                             <td>{alquiler.estatus}</td>
                                             <td>
                                                 <Link to={"/editarAlquiler/" + alquiler._id} className="btn btn-success">Editar</Link>
+                                                {/* <Link to={"/eliminarAlquiler/" + alquiler._id} className="btn btn-danger">Eliminar</Link> */}                                                
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarAlquiler(alquiler._id)                                                        
+                                                        this.EliminarAlquiler(alquiler._id)                                                        
                                                     }
                                                 }>
                                                     Eliminar

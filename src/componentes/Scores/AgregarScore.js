@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarScore extends React.Component {
@@ -58,6 +59,11 @@ class AgregarScore extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Score Agregado",
+                "El Score se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarScores" />
         }
         return (

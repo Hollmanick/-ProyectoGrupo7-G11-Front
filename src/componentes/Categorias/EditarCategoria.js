@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -61,6 +62,11 @@ class EditarCategoria extends Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Categoria Editada",
+                "La Categoria se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarCategorias" />
         }
         return (

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
 
 class AgregarCategoria extends React.Component {
@@ -58,6 +59,11 @@ class AgregarCategoria extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Categoria Agregada",
+                "La Categoria se Agrego Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarCategorias" />
         }
         return (

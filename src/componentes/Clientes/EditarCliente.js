@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -67,6 +68,11 @@ class EditarCliente extends Component {
     }
     render() {
         if (this.state.status === "success") {
+            swal(
+                "Cliente Editado",
+                "El Cliente se Edito Correctamente",
+                "success"                                                
+            )
             return <Navigate to="/mostrarClientes" />
         }
         return (
