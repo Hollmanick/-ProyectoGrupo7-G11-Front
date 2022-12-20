@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 class Scores extends Component {
     state = {
-        scores: []
+        scores: [],
+        status: null
     }
 
     componentWillMount() {
@@ -16,9 +18,9 @@ class Scores extends Component {
         axios.get("http://localhost:3000/api/mostrarScores")
             .then(res => {
                 console.log("Scores");
-                console.log(res.data.doc);
+                console.log(res.data.data);
                 this.setState({
-                    scores: res.data.doc
+                    scores: res.data.data
                 });
             })
             .catch(error => {
@@ -31,30 +33,30 @@ class Scores extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Score Eliminado",
-                    "El Score se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
+    render() {                      
         console.log(this.state.scores);
         return (
             <React.Fragment>
-                <h1>Scores</h1>
-                <Link to="/agregarScore" className="btn btn-dark">Agregar Score</Link>
+                <h1>Listado de Scores</h1>
+                <br />
+                <Link to="/agregarScore" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Score</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha_Entrega</td>
-                            <td>Fecha_Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Score</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,9 +66,8 @@ class Scores extends Component {
                                     <React.Fragment>
                                         <tr>
                                             <td>{score._id}</td>
-                                            <td>{score.fechaEntrega}</td>
-                                            <td>{score.fechaDevolucion}</td>
-                                            <td>{score.estatus}</td>
+                                            <td>{score.score}</td>
+                                            <td>{score.descripcion}</td>
                                             <td>
                                                 <Link to={"/editarScore/" + score._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={

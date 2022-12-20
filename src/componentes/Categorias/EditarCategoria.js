@@ -3,16 +3,16 @@ import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class EditarScore extends Component {
+class EditarCategoria extends Component {
     path = null;
     url = [];
-    scoreId = null
+    categoriaId = null
 
-    score = React.createRef();
+    nombre = React.createRef();
     descripcion = React.createRef();
 
     state = {
-        score: {},
+        categoria: {},
         status: null
     }
 
@@ -21,16 +21,16 @@ class EditarScore extends Component {
         console.log(this.path);
         this.url = this.path.split("/");
         console.log(this.url);
-        this.scoreId = this.url[2];
-        console.log(this.scoreId);
-        this.mostrarScore(this.scoreId);
+        this.categoriaId = this.url[2];
+        console.log(this.categoriaId);
+        this.mostrarCategoria(this.categoriaId);
     }
 
-    mostrarScore = (id) => {
-        axios.get("http://localhost:3000/api/mostrarScore/" + id)
+    mostrarCategoria = (id) => {
+        axios.get("http://localhost:3000/api/mostrarCategoria/" + id)
             .then(res => {
                 this.setState({
-                    score: res.data.data
+                    categoria: res.data.data
                 })
                 console.log(res.data.data);
             })
@@ -41,16 +41,16 @@ class EditarScore extends Component {
             })
     }
 
-    editarScore = (e) => {
+    editarCategoria = (e) => {
         e.preventDefault();
-        console.log(this.score.current.value);
+        console.log(this.nombre.current.value);
         console.log(this.descripcion.current.value);
-        var score = {
-            score: this.score.current.value,
+        var categoria = {
+            nombre: this.nombre.current.value,
             descripcion: this.descripcion.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarScore/" + this.scoreId, score)
+        axios.put("http://localhost:3000/api/editarCategoria/" + this.categoriaId, categoria)
             .then(res => {
                 this.setState({
                     status: "success",
@@ -63,23 +63,23 @@ class EditarScore extends Component {
     render() {
         if (this.state.status === "success") {
             swal(
-                "Score Editado",
-                "El Score se Edito Correctamente",
+                "Categoria Editada",
+                "La Categoria se Edito Correctamente",
                 "success"                                                
             )
-            return <Navigate to="/mostrarScores" />
+            return <Navigate to="/mostrarCategorias" />
         }
         return (
             <React.Fragment>
-                <h1>Editar Score</h1>
-                <form onSubmit={this.editarScore}>
+                <h1>Editar Categoria</h1>
+                <form onSubmit={this.editarCategoria}>
                     <div className="mb-3">
-                        <label for="score" className="form-label">Score</label>
-                        <input type="text" className="form-control" id="score" placeholder="Digite el score" defaultValue={this.state.score.score} ref={this.score} />
+                        <label for="nombre" className="form-label">Nombre</label>
+                        <input type="text" className="form-control" id="nombre" placeholder="Digite el nombre de la categoria" defaultValue={this.state.categoria.nombre} ref={this.nombre} />
                     </div>
                     <div className="mb-3">
                         <label for="descripcion" className="form-label">Descripcion</label>
-                        <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Digite la descripcion del score" defaultValue={this.state.score.descripcion} ref={this.descripcion} />
+                        <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Digite la descripcion de la categoria" defaultValue={this.state.categoria.descripcion} ref={this.descripcion} />
                     </div>
                     <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
@@ -88,4 +88,4 @@ class EditarScore extends Component {
     }
 }
 
-export default EditarScore;
+export default EditarCategoria;

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 class Mensajes extends Component {
     state = {
-        mensajes: []
+        mensajes: [],
+        status: null
     }
 
     componentWillMount() {
@@ -16,9 +18,9 @@ class Mensajes extends Component {
         axios.get("http://localhost:3000/api/mostrarMensajes")
             .then(res => {
                 console.log("Mensajes");
-                console.log(res.data.doc);
+                console.log(res.data.data);
                 this.setState({
-                    mensajes: res.data.doc
+                    mensajes: res.data.data
                 });
             })
             .catch(error => {
@@ -31,30 +33,30 @@ class Mensajes extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Mensaje Eliminado",
-                    "El Mensaje se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
+    render() {                     
         console.log(this.state.mensajes);
         return (
             <React.Fragment>
-                <h1>Mensajes</h1>
-                <Link to="/agregarMensaje" className="btn btn-dark">Agregar Mensaje</Link>
+                <h1>Listado de Mensajes</h1>
+                <br />
+                <Link to="/agregarMensaje" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Mensaje</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha_Entrega</td>
-                            <td>Fecha_Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Titulo</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,9 +66,8 @@ class Mensajes extends Component {
                                     <React.Fragment>
                                         <tr>
                                             <td>{mensaje._id}</td>
-                                            <td>{mensaje.fechaEntrega}</td>
-                                            <td>{mensaje.fechaDevolucion}</td>
-                                            <td>{mensaje.estatus}</td>
+                                            <td>{mensaje.titulo}</td>
+                                            <td>{mensaje.descripcion}</td>
                                             <td>
                                                 <Link to={"/editarMensaje/" + mensaje._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={

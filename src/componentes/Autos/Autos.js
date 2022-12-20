@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 class Autos extends Component {
     state = {
-        autos: []
+        autos: [],
+        status: null
     }
 
     componentWillMount() {
@@ -16,9 +18,9 @@ class Autos extends Component {
         axios.get("http://localhost:3000/api/mostrarAutos")
             .then(res => {
                 console.log("Autos");
-                console.log(res.data.doc);
+                console.log(res.data.data);
                 this.setState({
-                    autos: res.data.doc
+                    autos: res.data.data
                 });
             })
             .catch(error => {
@@ -31,30 +33,32 @@ class Autos extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
                     "Auto Eliminado",
                     "El Auto se Elimino Correctamente",
-                    "success"
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
+    render() {                      
         console.log(this.state.autos);
         return (
             <React.Fragment>
-                <h1>Autos</h1>
-                <Link to="/agregarAuto" className="btn btn-dark">Agregar Auto</Link>
+                <h1>Listado de Autos</h1>
+                <br />
+                <Link to="/agregarAuto" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Auto</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha_Entrega</td>
-                            <td>Fecha_Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Nombre</td>
+                            <td>Marca</td>
+                            <td>Año</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,14 +68,15 @@ class Autos extends Component {
                                     <React.Fragment>
                                         <tr>
                                             <td>{auto._id}</td>
-                                            <td>{auto.fechaEntrega}</td>
-                                            <td>{auto.fechaDevolucion}</td>
-                                            <td>{auto.estatus}</td>
+                                            <td>{auto.nombre}</td>
+                                            <td>{auto.marca}</td>
+                                            <td>{auto.ahno}</td>
+                                            <td>{auto.descripcion}</td>
                                             <td>
                                                 <Link to={"/editarAuto/" + auto._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarAuto(auto._id)
+                                                        this.eliminarAuto(auto._id)                                                        
                                                     }
                                                 }>
                                                     Eliminar

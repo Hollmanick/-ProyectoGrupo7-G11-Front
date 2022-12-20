@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -7,9 +8,10 @@ class EditarAuto extends Component {
     url = [];
     autoId = null
 
-    fechaEntrega = React.createRef();
-    fechaDevolucion = React.createRef();
-    estatus = React.createRef();
+    nombre = React.createRef();
+    marca = React.createRef();
+    ahno = React.createRef();
+    descripcion = React.createRef();
 
     state = {
         auto: {},
@@ -30,9 +32,9 @@ class EditarAuto extends Component {
         axios.get("http://localhost:3000/api/mostrarAuto/" + id)
             .then(res => {
                 this.setState({
-                    auto: res.data.auto
+                    auto: res.data.data
                 })
-                console.log(res.data.auto);
+                console.log(res.data.data);
             })
             .catch(error => {
 
@@ -43,13 +45,15 @@ class EditarAuto extends Component {
 
     editarAuto = (e) => {
         e.preventDefault();
-        console.log(this.fechaEntrega.current.value);
-        console.log(this.fechaDevolucion.current.value);
-        console.log(this.estatus.current.value);
+        console.log(this.nombre.current.value);
+        console.log(this.marca.current.value);
+        console.log(this.ahno.current.value);
+        console.log(this.descripcion.current.value);
         var auto = {
-            fechaEntrega: this.fechaEntrega.current.value,
-            fechaDevolucion: this.fechaDevolucion.current.value,
-            estatus: this.estatus.current.value
+            nombre: this.nombre.current.value,
+            marca: this.marca.current.value,
+            ahno: this.ahno.current.value,
+            descripcion: this.descripcion.current.value
         }
 
         axios.put("http://localhost:3000/api/editarAuto/" + this.autoId, auto)
@@ -64,25 +68,34 @@ class EditarAuto extends Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Autos" />
+            swal(
+                "Auto Editado",
+                "El Auto se Edito Correctamente",
+                "success"                                                
+            )
+            return <Navigate to="/mostrarAutos" />
         }
         return (
             <React.Fragment>
                 <h1>Editar Auto</h1>
                 <form onSubmit={this.editarAuto}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
-                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.auto.fechaEntrega} ref={this.fechaEntrega} />
+                        <label for="nombre" className="form-label">Nombre</label>
+                        <input type="text" className="form-control" id="nombre" placeholder="Digite el nombre del auto" defaultValue={this.state.auto.nombre} ref={this.nombre} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
-                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.auto.fechaDevolucion} ref={this.fechaDevolucion} />
+                        <label for="marca" className="form-label">Marca</label>
+                        <input type="text" className="form-control" id="marca" placeholder="Digite la marca del auto" defaultValue={this.state.auto.marca} ref={this.marca} />
                     </div>
                     <div className="mb-3">
-                        <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.auto.estatus} ref={this.estatus} />
+                        <label for="ahno" className="form-label">Año</label>
+                        <input type="number" className="form-control" id="ahno" aria-describedby="emailHelp" placeholder="Digite el año del auto" defaultValue={this.state.auto.ahno} ref={this.ahno} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <div className="mb-3">
+                        <label for="descripcion" className="form-label">Descripcion</label>
+                        <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Digite la descripcion del auto" defaultValue={this.state.auto.descripcion} ref={this.descripcion} />
+                    </div>
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

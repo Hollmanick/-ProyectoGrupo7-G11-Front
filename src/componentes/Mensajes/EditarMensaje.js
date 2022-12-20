@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -7,9 +8,8 @@ class EditarMensaje extends Component {
     url = [];
     mensajeId = null
 
-    fechaEntrega = React.createRef();
-    fechaDevolucion = React.createRef();
-    estatus = React.createRef();
+    titulo = React.createRef();
+    descripcion = React.createRef();
 
     state = {
         mensaje: {},
@@ -30,9 +30,9 @@ class EditarMensaje extends Component {
         axios.get("http://localhost:3000/api/mostrarMensaje/" + id)
             .then(res => {
                 this.setState({
-                    mensaje: res.data.mensaje
+                    mensaje: res.data.data
                 })
-                console.log(res.data.mensaje);
+                console.log(res.data.data);
             })
             .catch(error => {
 
@@ -43,13 +43,11 @@ class EditarMensaje extends Component {
 
     editarMensaje = (e) => {
         e.preventDefault();
-        console.log(this.fechaEntrega.current.value);
-        console.log(this.fechaDevolucion.current.value);
-        console.log(this.estatus.current.value);
+        console.log(this.titulo.current.value);
+        console.log(this.descripcion.current.value);
         var mensaje = {
-            fechaEntrega: this.fechaEntrega.current.value,
-            fechaDevolucion: this.fechaDevolucion.current.value,
-            estatus: this.estatus.current.value
+            titulo: this.titulo.current.value,
+            descripcion: this.descripcion.current.value
         }
 
         axios.put("http://localhost:3000/api/editarMensaje/" + this.mensajeId, mensaje)
@@ -64,25 +62,26 @@ class EditarMensaje extends Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Mensajes" />
+            swal(
+                "Mensaje Editado",
+                "El Mensaje se Edito Correctamente",
+                "success"                                                
+            )
+            return <Navigate to="/mostrarMensajes" />
         }
         return (
             <React.Fragment>
                 <h1>Editar Mensaje</h1>
                 <form onSubmit={this.editarMensaje}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
-                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.mensaje.fechaEntrega} ref={this.fechaEntrega} />
+                        <label for="titulo" className="form-label">Titulo</label>
+                        <input type="text" className="form-control" id="titulo" placeholder="Digite el titulo del mensaje" defaultValue={this.state.mensaje.titulo} ref={this.titulo} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
-                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.mensaje.fechaDevolucion} ref={this.fechaDevolucion} />
+                        <label for="descripcion" className="form-label">Descripcion</label>
+                        <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Digite la descripcion del mensaje" defaultValue={this.state.mensaje.descripcion} ref={this.descripcion} />
                     </div>
-                    <div className="mb-3">
-                        <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.mensaje.estatus} ref={this.estatus} />
-                    </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 class Clientes extends Component {
     state = {
-        clientes: []
+        clientes: [],
+        status: null
     }
 
     componentWillMount() {
@@ -16,9 +18,9 @@ class Clientes extends Component {
         axios.get("http://localhost:3000/api/mostrarClientes")
             .then(res => {
                 console.log("Clientes");
-                console.log(res.data.doc);
+                console.log(res.data.data);
                 this.setState({
-                    clientes: res.data.doc
+                    clientes: res.data.data
                 });
             })
             .catch(error => {
@@ -31,30 +33,32 @@ class Clientes extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Cliente Eliminado",
-                    "El Cliente se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
+    render() {                    
         console.log(this.state.clientes);
         return (
             <React.Fragment>
-                <h1>Clientes</h1>
-                <Link to="/agregarCliente" className="btn btn-dark">Agregar Cliente</Link>
+                <h1>Listado de Clientes</h1>
+                <br />
+                <Link to="/agregarCliente" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Cliente</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha_Entrega</td>
-                            <td>Fecha_Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Correo</td>
+                            <td>Contraseña</td>
+                            <td>Nombre</td>
+                            <td>Edad</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,9 +68,10 @@ class Clientes extends Component {
                                     <React.Fragment>
                                         <tr>
                                             <td>{cliente._id}</td>
-                                            <td>{cliente.fechaEntrega}</td>
-                                            <td>{cliente.fechaDevolucion}</td>
-                                            <td>{cliente.estatus}</td>
+                                            <td>{cliente.correo}</td>
+                                            <td>{cliente.contrasena}</td>
+                                            <td>{cliente.nombre}</td>
+                                            <td>{cliente.edad}</td>
                                             <td>
                                                 <Link to={"/editarCliente/" + cliente._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={

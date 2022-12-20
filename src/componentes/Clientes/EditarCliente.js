@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -7,9 +8,10 @@ class EditarCliente extends Component {
     url = [];
     clienteId = null
 
-    fechaEntrega = React.createRef();
-    fechaDevolucion = React.createRef();
-    estatus = React.createRef();
+    correo = React.createRef();
+    contrasena = React.createRef();
+    nombre = React.createRef();
+    edad = React.createRef();
 
     state = {
         cliente: {},
@@ -30,9 +32,9 @@ class EditarCliente extends Component {
         axios.get("http://localhost:3000/api/mostrarCliente/" + id)
             .then(res => {
                 this.setState({
-                    cliente: res.data.cliente
+                    cliente: res.data.data
                 })
-                console.log(res.data.cliente);
+                console.log(res.data.data);
             })
             .catch(error => {
 
@@ -43,13 +45,15 @@ class EditarCliente extends Component {
 
     editarCliente = (e) => {
         e.preventDefault();
-        console.log(this.fechaEntrega.current.value);
-        console.log(this.fechaDevolucion.current.value);
-        console.log(this.estatus.current.value);
+        console.log(this.correo.current.value);
+        console.log(this.contrasena.current.value);
+        console.log(this.nombre.current.value);
+        console.log(this.edad.current.value);
         var cliente = {
-            fechaEntrega: this.fechaEntrega.current.value,
-            fechaDevolucion: this.fechaDevolucion.current.value,
-            estatus: this.estatus.current.value
+            correo: this.correo.current.value,
+            contrasena: this.contrasena.current.value,
+            nombre: this.nombre.current.value,
+            edad: this.edad.current.value
         }
 
         axios.put("http://localhost:3000/api/editarCliente/" + this.clienteId, cliente)
@@ -64,25 +68,34 @@ class EditarCliente extends Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Clientes" />
+            swal(
+                "Cliente Editado",
+                "El Cliente se Edito Correctamente",
+                "success"                                                
+            )
+            return <Navigate to="/mostrarClientes" />
         }
         return (
             <React.Fragment>
                 <h1>Editar Cliente</h1>
                 <form onSubmit={this.editarCliente}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
-                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.cliente.fechaEntrega} ref={this.fechaEntrega} />
+                        <label for="correo" className="form-label">Correo</label>
+                        <input type="email" className="form-control" id="correo" aria-describedby="emailHelp" placeholder="Digite el correo del cliente" defaultValue={this.state.cliente.correo} ref={this.correo} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
-                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.cliente.fechaDevolucion} ref={this.fechaDevolucion} />
+                        <label for="contrasena" className="form-label">Contraseña</label>
+                        <input type="password" className="form-control" id="contrasena" placeholder="Digite la contraseña del cliente" defaultValue={this.state.cliente.contrasena} ref={this.contrasena} />
                     </div>
                     <div className="mb-3">
-                        <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.cliente.estatus} ref={this.estatus} />
+                        <label for="nombre" className="form-label">Nombre</label>
+                        <input type="text" className="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Digite el nombre del cliente" defaultValue={this.state.cliente.nombre} ref={this.nombre} />
                     </div>
-                    <input type="submit" className="btn btn-primary" />
+                    <div className="mb-3">
+                        <label for="edad" className="form-label">Edad</label>
+                        <input type="number" className="form-control" id="edad" aria-describedby="emailHelp" placeholder="Digite la edad del cliente" defaultValue={this.state.cliente.edad} ref={this.edad} />
+                    </div>
+                    <input type="submit" className="btn btn-outline-info btn-lg p-10 mb-5" />
                 </form>
             </React.Fragment>
         );

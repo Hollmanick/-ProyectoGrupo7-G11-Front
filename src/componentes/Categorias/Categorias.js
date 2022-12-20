@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { Navigate } from "react-router-dom";
 
 class Categorias extends Component {
     state = {
-        categorias: []
+        categorias: [],
+        status: null
     }
 
     componentWillMount() {
@@ -16,9 +18,9 @@ class Categorias extends Component {
         axios.get("http://localhost:3000/api/mostrarCategorias")
             .then(res => {
                 console.log("Categorias");
-                console.log(res.data.doc);
+                console.log(res.data.data);
                 this.setState({
-                    categorias: res.data.doc
+                    categorias: res.data.data
                 });
             })
             .catch(error => {
@@ -31,30 +33,30 @@ class Categorias extends Component {
             .then(res => {
                 this.setState({
                     status: "delete"
-                });
-
-                //window.location.reload(true);
+                });               
 
                 swal(
-                    "Categoria Eliminado",
-                    "El Categoria se Elimino Correctamente",
-                    "success"
+                    "Auto Eliminado",
+                    "El Auto se Elimino Correctamente",
+                    "success"                    
                 )
+
+                // window.location.reload(true)
             })
     }
-    render() {
+    render() {                       
         console.log(this.state.categorias);
         return (
             <React.Fragment>
-                <h1>Categorias</h1>
-                <Link to="/agregarCategoria" className="btn btn-dark">Agregar Categoria</Link>
+                <h1>Listado de Categorias</h1>
+                <br />
+                <Link to="/agregarCategoria" className="btn btn-outline-dark btn-lg p-10 mb-5">Agregar Categoria</Link>
                 <table className="table">
                     <thead>
                         <tr>
                             <td>Id</td>
-                            <td>Fecha_Entrega</td>
-                            <td>Fecha_Devolucion</td>
-                            <td>Estatus</td>
+                            <td>Nombre</td>
+                            <td>Descripcion</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,9 +66,8 @@ class Categorias extends Component {
                                     <React.Fragment>
                                         <tr>
                                             <td>{categoria._id}</td>
-                                            <td>{categoria.fechaEntrega}</td>
-                                            <td>{categoria.fechaDevolucion}</td>
-                                            <td>{categoria.estatus}</td>
+                                            <td>{categoria.nombre}</td>
+                                            <td>{categoria.descripcion}</td>
                                             <td>
                                                 <Link to={"/editarCategoria/" + categoria._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
