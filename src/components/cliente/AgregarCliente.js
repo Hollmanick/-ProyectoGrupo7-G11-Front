@@ -7,9 +7,6 @@ class AgregarCliente extends React.Component {
     contrasena = React.createRef();
     nombre = React.createRef();
     edad = React.createRef();
-    // fechaEntrega = React.createRef();
-    // fechaDevolucion = React.createRef();
-    // estatus = React.createRef();
 
     state = {
         cliente: {},
@@ -19,9 +16,6 @@ class AgregarCliente extends React.Component {
     changeState = () => {
         this.setState({
             cliente: {                
-                // "fechaEntrega": this.fechaEntrega.current.value,
-                // "fechaDevolucion": this.fechaDevolucion.current.value,
-                // "estatus": this.estatus.current.value
                 "email": this.email.current.value,
                 "contrasena": this.contrasena.current.value,
                 "nombre": this.nombre.current.value,
@@ -37,19 +31,9 @@ class AgregarCliente extends React.Component {
         console.log(typeof (this.state.cliente), this.state.cliente);
         
         this.changeState();
-        // axios.post("http://localhost:3000/api/agregarcliente", this.state.cliente)
-        //     .then(res => {
-        //         this.setState({
-        //             status: "success",
-        //         })
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error)
-        //     })
-
         try {
             console.log("body enviado", this.state.cliente)
-            const response = await fetch('http://localhost:3000/api/cliente', {
+            const response = await fetch('http://localhost:3500/api/cliente', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -73,7 +57,7 @@ class AgregarCliente extends React.Component {
         return (
             <React.Fragment>
                 <h1>AgregarCliente</h1>
-                <form onSubmit={this.agregarCliente}>
+                <form onSubmit={this.agregarCliente} className='container my-3'>
                     <div className="mb-3">
                         <label for="email" className="form-label">Email</label>
                         <input type="email" className="form-control" id="email" placeholder="Digite su email" name="email" ref={this.email} onChange={this.changeState} />

@@ -1,6 +1,6 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import Rutas from './Rutas';
+import { Rutas } from './routes/cliente';
 import LoginButton from './components/Login';
 import LogoutButton from './components/Logout';
 import Profile from './components/Perfil';

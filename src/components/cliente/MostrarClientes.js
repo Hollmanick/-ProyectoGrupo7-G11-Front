@@ -15,7 +15,7 @@ class Clientes extends Component {
     }
 
     mostrarClientes = () => {
-        axios.get("http://localhost:3000/api/cliente/")
+        axios.get("http://localhost:3500/api/cliente")
             .then(res => {
                 console.log("Clientes");
                 console.log(res.data.data);
@@ -29,7 +29,7 @@ class Clientes extends Component {
     }
 
     eliminarCliente = (id) => {
-        axios.delete("http://localhost:3000/api/" + id)
+        axios.delete("http://localhost:3500/api/cliente/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -64,10 +64,10 @@ class Clientes extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.clientes.map((cliente) => {
+                            this.state.clientes.map((cliente,i) => {
                                 return (
                                     <React.Fragment>
-                                        <tr>
+                                        <tr key={i}>
                                             <td>{cliente._id}</td>
                                             <td>{cliente.email}</td>
                                             <td>{cliente.nombre}</td>

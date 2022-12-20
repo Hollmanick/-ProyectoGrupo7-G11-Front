@@ -24,11 +24,11 @@ class EditarCliente extends Component {
         console.log(this.url);
         this.clienteId = this.url[2];
         console.log(this.clienteId);
-        this.mostrarAlquiler(this.clienteId);
+        this.mostrarCliente(this.clienteId);
     }
 
-    mostrarAlquiler = (id) => {
-        axios.get("http://localhost:3000/api/cliente/" + id)
+    mostrarCliente = (id) => {
+        axios.get("http://localhost:3500/api/cliente/" + id)
             .then(res => {
                 this.setState({
                     cliente: res.data.data
@@ -40,7 +40,7 @@ class EditarCliente extends Component {
             })
     }
 
-    editarAlquiler = (e) => {
+    editarCliente = (e) => {
         e.preventDefault();
         console.log(this.email.current.value);
         console.log(this.nombre.current.value);
@@ -52,7 +52,7 @@ class EditarCliente extends Component {
             edad: this.edad.current.value
         }
 
-        axios.put("http://localhost:3000/api/cliente/" + this.clienteId, cliente)
+        axios.put("http://localhost:3500/api/cliente/" + this.clienteId, cliente)
             .then(res => {
                 this.setState({
                     status: "success",
@@ -69,7 +69,7 @@ class EditarCliente extends Component {
         return (
             <React.Fragment>
                 <h1>Editar Cliente</h1>
-                <form onSubmit={this.editarAlquiler}>
+                <form onSubmit={this.editarCliente} className='container my-3'>
                     <div className="mb-3">
                         <label for="email" className="form-label">Email</label>
                         <input type="email" className="form-control" id="email" placeholder="Digite su Email" defaultValue={this.state.cliente.email} ref={this.email} />
