@@ -7,9 +7,8 @@ class EditarScore extends Component {
     url = [];
     scoreId = null
 
-    fechaEntrega = React.createRef();
-    fechaDevolucion = React.createRef();
-    estatus = React.createRef();
+    score = React.createRef();
+    descripcion = React.createRef();
 
     state = {
         score: {},
@@ -30,9 +29,9 @@ class EditarScore extends Component {
         axios.get("http://localhost:3000/api/mostrarScore/" + id)
             .then(res => {
                 this.setState({
-                    score: res.data.score
+                    score: res.data.data
                 })
-                console.log(res.data.score);
+                console.log(res.data.data);
             })
             .catch(error => {
 
@@ -43,13 +42,11 @@ class EditarScore extends Component {
 
     editarScore = (e) => {
         e.preventDefault();
-        console.log(this.fechaEntrega.current.value);
-        console.log(this.fechaDevolucion.current.value);
-        console.log(this.estatus.current.value);
+        console.log(this.score.current.value);
+        console.log(this.descripcion.current.value);
         var score = {
-            fechaEntrega: this.fechaEntrega.current.value,
-            fechaDevolucion: this.fechaDevolucion.current.value,
-            estatus: this.estatus.current.value
+            score: this.score.current.value,
+            descripcion: this.descripcion.current.value,
         }
 
         axios.put("http://localhost:3000/api/editarScore/" + this.scoreId, score)
@@ -64,23 +61,19 @@ class EditarScore extends Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Scores" />
+            return <Navigate to="/mostrarScores" />
         }
         return (
             <React.Fragment>
                 <h1>Editar Score</h1>
                 <form onSubmit={this.editarScore}>
                     <div className="mb-3">
-                        <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
-                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.score.fechaEntrega} ref={this.fechaEntrega} />
+                        <label for="score" className="form-label">Score</label>
+                        <input type="text" className="form-control" id="score" placeholder="Digite su calificacion" defaultValue={this.state.score.score} ref={this.score} />
                     </div>
                     <div className="mb-3">
-                        <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
-                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.score.fechaDevolucion} ref={this.fechaDevolucion} />
-                    </div>
-                    <div className="mb-3">
-                        <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.score.estatus} ref={this.estatus} />
+                        <label for="descripcion" className="form-label">Descripcion</label>
+                        <input type="text" className="form-control" id="descripcion" placeholder="Describa su experiencia" defaultValue={this.state.score.descripcion} ref={this.descripcion} />
                     </div>
                     <input type="submit" className="btn btn-primary" />
                 </form>
