@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -29,7 +30,7 @@ class EditarCliente extends Component {
     }
 
     mostrarCliente = (id) => {
-        axios.get("http://localhost:3000/api/mostrarCliente/" + id)
+        axios.get(`${baseUrl}/mostrarCliente/${id}`)
             .then(res => {
                 this.setState({
                     cliente: res.data.data
@@ -56,7 +57,7 @@ class EditarCliente extends Component {
             edad: this.edad.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarCliente/" + this.clienteId, cliente)
+        axios.put(`${baseUrl}/editarCliente/${this.clienteId}`, cliente)
             .then(res => {
                 this.setState({
                     status: "success",

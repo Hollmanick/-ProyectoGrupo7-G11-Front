@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -27,7 +28,7 @@ class EditarScore extends Component {
     }
 
     mostrarScore = (id) => {
-        axios.get("http://localhost:3000/api/mostrarScore/" + id)
+        axios.get(`${baseUrl}/mostrarScore/${id}`)
             .then(res => {
                 this.setState({
                     score: res.data.data
@@ -50,7 +51,7 @@ class EditarScore extends Component {
             descripcion: this.descripcion.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarScore/" + this.scoreId, score)
+        axios.put(`${baseUrl}/editarScore/${this.scoreId}`, score)
             .then(res => {
                 this.setState({
                     status: "success",

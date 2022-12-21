@@ -1,10 +1,10 @@
 import axios from "axios";
-import React from "react";
 import swal from "sweetalert";
-import { Navigate } from "react-router-dom";
 import { baseUrl } from "../Url";
+import React, { Component } from "react";
+import { Navigate } from "react-router-dom";
 
-class AgregarAlquiler extends React.Component {
+class AgregarAlquiler extends Component {
     fechaEntrega = React.createRef();
     fechaDevolucion = React.createRef();
     estatus = React.createRef();

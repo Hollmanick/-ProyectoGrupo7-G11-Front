@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Clientes extends Component {
@@ -15,7 +16,7 @@ class Clientes extends Component {
     }
 
     mostrarClientes = () => {
-        axios.get("http://localhost:3000/api/mostrarClientes")
+        axios.get(`${baseUrl}/mostrarClientes`)
             .then(res => {
                 console.log("Clientes");
                 console.log(res.data.data);
@@ -29,15 +30,15 @@ class Clientes extends Component {
     }
 
     eliminarCliente = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarCliente/" + id)
+        axios.delete(`${baseUrl}/eliminarCliente/${id}`)
             .then(res => {
                 this.setState({
                     status: "delete"
                 });               
 
                 swal(
-                    "Auto Eliminado",
-                    "El Auto se Elimino Correctamente",
+                    "Cliente Eliminado",
+                    "El Cliente se Elimino Correctamente",
                     "success"                    
                 )
 

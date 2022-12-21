@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Scores extends Component {
@@ -15,7 +16,7 @@ class Scores extends Component {
     }
 
     mostrarScores = () => {
-        axios.get("http://localhost:3000/api/mostrarScores")
+        axios.get(`${baseUrl}/mostrarScores`)
             .then(res => {
                 console.log("Scores");
                 console.log(res.data.data);
@@ -29,15 +30,15 @@ class Scores extends Component {
     }
 
     eliminarScore = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarScore/" + id)
+        axios.delete(`${baseUrl}/eliminarScore/${id}`)
             .then(res => {
                 this.setState({
                     status: "delete"
                 });               
 
                 swal(
-                    "Auto Eliminado",
-                    "El Auto se Elimino Correctamente",
+                    "Score Eliminado",
+                    "El Score se Elimino Correctamente",
                     "success"                    
                 )
 

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Autos extends Component {
@@ -15,7 +16,7 @@ class Autos extends Component {
     }
 
     mostrarAutos = () => {
-        axios.get("http://localhost:3000/api/mostrarAutos")
+        axios.get(`${baseUrl}/mostrarAutos`)
             .then(res => {
                 console.log("Autos");
                 console.log(res.data.data);
@@ -29,7 +30,7 @@ class Autos extends Component {
     }
 
     eliminarAuto = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarAuto/" + id)
+        axios.delete(`${baseUrl}/eliminarAuto/${id}`)
             .then(res => {
                 this.setState({
                     status: "delete"

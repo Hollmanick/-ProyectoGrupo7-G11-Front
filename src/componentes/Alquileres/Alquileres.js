@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Alquileres extends Component {

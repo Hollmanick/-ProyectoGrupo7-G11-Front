@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Mensajes extends Component {
@@ -15,7 +16,7 @@ class Mensajes extends Component {
     }
 
     mostrarMensajes = () => {
-        axios.get("http://localhost:3000/api/mostrarMensajes")
+        axios.get(`${baseUrl}/mostrarMensajes`)
             .then(res => {
                 console.log("Mensajes");
                 console.log(res.data.data);
@@ -29,15 +30,15 @@ class Mensajes extends Component {
     }
 
     eliminarMensaje = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarMensaje/" + id)
+        axios.delete(`${baseUrl}/eliminarMensaje/${id}`)
             .then(res => {
                 this.setState({
                     status: "delete"
                 });               
 
                 swal(
-                    "Auto Eliminado",
-                    "El Auto se Elimino Correctamente",
+                    "Mensaje Eliminado",
+                    "El Mensaje se Elimino Correctamente",
                     "success"                    
                 )
 

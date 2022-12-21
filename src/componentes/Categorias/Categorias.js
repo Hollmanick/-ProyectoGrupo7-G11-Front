@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
 class Categorias extends Component {
@@ -15,7 +16,7 @@ class Categorias extends Component {
     }
 
     mostrarCategorias = () => {
-        axios.get("http://localhost:3000/api/mostrarCategorias")
+        axios.get(`${baseUrl}/mostrarCategorias`)
             .then(res => {
                 console.log("Categorias");
                 console.log(res.data.data);
@@ -29,15 +30,15 @@ class Categorias extends Component {
     }
 
     eliminarCategoria = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarCategoria/" + id)
+        axios.delete(`${baseUrl}/eliminarCategoria/${id}`)
             .then(res => {
                 this.setState({
                     status: "delete"
                 });               
 
                 swal(
-                    "Auto Eliminado",
-                    "El Auto se Elimino Correctamente",
+                    "Categoria Eliminada",
+                    "La Categoria se Elimino Correctamente",
                     "success"                    
                 )
 

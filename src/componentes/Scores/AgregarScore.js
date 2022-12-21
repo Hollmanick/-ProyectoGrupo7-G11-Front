@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarScore extends React.Component {
+class AgregarScore extends Component {
     score = React.createRef();
     descripcion = React.createRef();
 
@@ -40,7 +41,7 @@ class AgregarScore extends React.Component {
 
         try {
             console.log("body enviado", this.state.score)
-            const response = await fetch('http://localhost:3000/api/agregarScore', {
+            const response = await fetch(`${baseUrl}/agregarScore`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

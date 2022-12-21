@@ -1,8 +1,8 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
-import { baseUrl } from "../Url";
 
 class EditarAlquiler extends Component {
     path = null;
