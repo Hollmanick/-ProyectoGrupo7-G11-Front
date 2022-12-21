@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 
-class Scores extends Component {
+class Clientes extends Component {
     state = {
-        scores: []
+        clientes: []
     }
 
     componentWillMount() {
-        this.mostrarScores();
+        this.mostrarClientes();
     }
 
-    mostrarScores = () => {
-        axios.get("http://localhost:3000/api/mostrarScores")
+    mostrarClientes = () => {
+        axios.get("http://localhost:3000/api/mostrarClientes")
             .then(res => {
-                console.log("Scores");
+                console.log("Clientes");
                 console.log(res.data.doc);
                 this.setState({
-                    scores: res.data.doc
+                    clientes: res.data.doc
                 });
             })
             .catch(error => {
@@ -26,8 +26,8 @@ class Scores extends Component {
             })
     }
 
-    eliminarScore = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarScore/" + id)
+    eliminarCliente = (id) => {
+        axios.delete("http://localhost:3000/api/eliminarCliente/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -36,18 +36,18 @@ class Scores extends Component {
                 //window.location.reload(true);
 
                 swal(
-                    "Score Eliminado",
-                    "El Score se Elimino Correctamente",
+                    "Cliente Eliminado",
+                    "El Cliente se Elimino Correctamente",
                     "success"
                 )
             })
     }
     render() {
-        console.log(this.state.scores);
+        console.log(this.state.clientes);
         return (
             <React.Fragment>
-                <h1>Scores</h1>
-                <Link to="/agregarScore" className="btn btn-dark">Agregar Score</Link>
+                <h1>Clientes</h1>
+                <Link to="/agregarCliente" className="btn btn-dark">Agregar Cliente</Link>
                 <table className="table">
                     <thead>
                         <tr>
@@ -59,19 +59,19 @@ class Scores extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.scores.map((score) => {
+                            this.state.clientes.map((cliente) => {
                                 return (
                                     <React.Fragment>
                                         <tr>
-                                            <td>{score._id}</td>
-                                            <td>{score.fechaEntrega}</td>
-                                            <td>{score.fechaDevolucion}</td>
-                                            <td>{score.estatus}</td>
+                                            <td>{cliente._id}</td>
+                                            <td>{cliente.fechaEntrega}</td>
+                                            <td>{cliente.fechaDevolucion}</td>
+                                            <td>{cliente.estatus}</td>
                                             <td>
-                                                <Link to={"/editarScore/" + score._id} className="btn btn-success">Editar</Link>
+                                                <Link to={"/editarCliente/" + cliente._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarScore(score._id)
+                                                        this.eliminarCliente(cliente._id)
                                                     }
                                                 }>
                                                     Eliminar
@@ -89,4 +89,4 @@ class Scores extends Component {
     }
 }
 
-export default Scores;
+export default Clientes;

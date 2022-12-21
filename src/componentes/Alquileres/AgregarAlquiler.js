@@ -2,52 +2,71 @@ import axios from "axios";
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarScore extends React.Component {
+class AgregarAlquiler extends React.Component {
     fechaEntrega = React.createRef();
     fechaDevolucion = React.createRef();
     estatus = React.createRef();
 
     state = {
-        score: {},
+        alquiler: {},
         status: null
     }
 
     changeState = () => {
         this.setState({
-            score: {
-                fechaEntrega: this.fechaEntrega.current.value,
-                fechaDevolucion: this.fechaDevolucion.current.value,
-                estatus: this.estatus.current.value
+            alquiler: {                
+                "fechaEntrega": this.fechaEntrega.current.value,
+                "fechaDevolucion": this.fechaDevolucion.current.value,
+                "estatus": this.estatus.current.value
             }
         })
 
         console.log(this.state);
     }
 
-    agregarScore = (e) => {
+    agregarAlquiler = async (e) => {
         e.preventDefault();
-        console.log(this.fechaEntrega.current.value);
-        console.log(this.fechaDevolucion.current.value);
-        console.log(this.estatus.current.value);
+        console.log(typeof (this.fechaEntrega.current.value), this.fechaEntrega.current.value);
+        console.log(typeof (this.fechaDevolucion.current.value), this.fechaDevolucion.current.value);
+        console.log(typeof (this.estatus.current.value), this.estatus.current.value);
         this.changeState();
-        axios.post("http://localhost:3000/api/agregarScore", this.state.score)
-            .then(res => {
-                this.setState({
-                    status: "success",
-                })
+        // axios.post("http://localhost:3000/api/agregarAlquiler", this.state.alquiler)
+        //     .then(res => {
+        //         this.setState({
+        //             status: "success",
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //     })
+
+        try {
+            console.log("body enviado", this.state.alquiler)
+            const response = await fetch('http://localhost:3000/api/agregarAlquiler', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state.alquiler)
             })
-            .catch(function (error) {
-                console.log(error)
+            this.setState({
+                status: "success",
             })
+            const data = await response.json() // Convertir respuesta a formato json
+            console.log(data)
+        } catch (error) {
+            console.error(error)
+        }
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Scores" />
+            return <Navigate to="/mostrarAlquileres" />
         }
         return (
             <React.Fragment>
-                <h1>AgregarScore</h1>
-                <form onSubmit={this.agregarScore}>
+                <h1>AgregarAlquiler</h1>
+                <form onSubmit={this.agregarAlquiler}>
                     <div className="mb-3">
                         <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
                         <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" name="fechaEntrega" ref={this.fechaEntrega} onChange={this.changeState} />
@@ -67,4 +86,4 @@ class AgregarScore extends React.Component {
     }
 }
 
-export default AgregarScore;
+export default AgregarAlquiler;

@@ -2,17 +2,17 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class EditarScore extends Component {
+class EditarCliente extends Component {
     path = null;
     url = [];
-    scoreId = null
+    clienteId = null
 
     fechaEntrega = React.createRef();
     fechaDevolucion = React.createRef();
     estatus = React.createRef();
 
     state = {
-        score: {},
+        cliente: {},
         status: null
     }
 
@@ -21,18 +21,18 @@ class EditarScore extends Component {
         console.log(this.path);
         this.url = this.path.split("/");
         console.log(this.url);
-        this.scoreId = this.url[2];
-        console.log(this.scoreId);
-        this.mostrarScore(this.scoreId);
+        this.clienteId = this.url[2];
+        console.log(this.clienteId);
+        this.mostrarCliente(this.clienteId);
     }
 
-    mostrarScore = (id) => {
-        axios.get("http://localhost:3000/api/mostrarScore/" + id)
+    mostrarCliente = (id) => {
+        axios.get("http://localhost:3000/api/mostrarCliente/" + id)
             .then(res => {
                 this.setState({
-                    score: res.data.score
+                    cliente: res.data.cliente
                 })
-                console.log(res.data.score);
+                console.log(res.data.cliente);
             })
             .catch(error => {
 
@@ -41,18 +41,18 @@ class EditarScore extends Component {
             })
     }
 
-    editarScore = (e) => {
+    editarCliente = (e) => {
         e.preventDefault();
         console.log(this.fechaEntrega.current.value);
         console.log(this.fechaDevolucion.current.value);
         console.log(this.estatus.current.value);
-        var score = {
+        var cliente = {
             fechaEntrega: this.fechaEntrega.current.value,
             fechaDevolucion: this.fechaDevolucion.current.value,
             estatus: this.estatus.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarScore/" + this.scoreId, score)
+        axios.put("http://localhost:3000/api/editarCliente/" + this.clienteId, cliente)
             .then(res => {
                 this.setState({
                     status: "success",
@@ -64,23 +64,23 @@ class EditarScore extends Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Scores" />
+            return <Navigate to="/Clientes" />
         }
         return (
             <React.Fragment>
-                <h1>Editar Score</h1>
-                <form onSubmit={this.editarScore}>
+                <h1>Editar Cliente</h1>
+                <form onSubmit={this.editarCliente}>
                     <div className="mb-3">
                         <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
-                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.score.fechaEntrega} ref={this.fechaEntrega} />
+                        <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" defaultValue={this.state.cliente.fechaEntrega} ref={this.fechaEntrega} />
                     </div>
                     <div className="mb-3">
                         <label for="fechaDevolucion" className="form-label">Fecha_Devolucion</label>
-                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.score.fechaDevolucion} ref={this.fechaDevolucion} />
+                        <input type="datetime-local" className="form-control" id="fechaDevolucion" placeholder="Digite su fecha de devolucion en formato: 2022-09-09T00:00:00" defaultValue={this.state.cliente.fechaDevolucion} ref={this.fechaDevolucion} />
                     </div>
                     <div className="mb-3">
                         <label for="estatus" className="form-label">Estatus</label>
-                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.score.estatus} ref={this.estatus} />
+                        <input type="text" className="form-control" id="estatus" aria-describedby="emailHelp" placeholder="Completo o Cancelado" defaultValue={this.state.cliente.estatus} ref={this.estatus} />
                     </div>
                     <input type="submit" className="btn btn-primary" />
                 </form>
@@ -89,4 +89,4 @@ class EditarScore extends Component {
     }
 }
 
-export default EditarScore;
+export default EditarCliente;

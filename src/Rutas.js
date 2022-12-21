@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Scores from "./componentes/Scores/Scores";
-import AgregarScore from "./componentes/Scores/AgregarScore";
-import EditarScore from "./componentes/Scores/EditarScore";
+import Alquileres from "./componentes/Alquileres/Alquileres";
+import AgregarAlquiler from "./componentes/Alquileres/AgregarAlquiler";
+import EditarAlquiler from "./componentes/Alquileres/EditarAlquiler";
 import Menu from "./componentes/Menu";
 
 class Rutas extends Component {
@@ -12,9 +12,9 @@ class Rutas extends Component {
                 <Menu />
                 <Routes>
                     <Route path="/" element={<div>GRUPO7-G11</div>} />
-                    <Route path="/mostrarScores" element={<Scores />} />
-                    <Route path="/agregarScore" element={<AgregarScore />} />
-                    <Route path="/editarScore/:id" element={<EditarScore />} />
+                    <Route path="/mostrarAlquileres" element={<Alquileres />} />
+                    <Route path="/agregarAlquiler" element={<AgregarAlquiler />} />
+                    <Route path="/editarAlquiler/:id" element={<EditarAlquiler />} />
                 </Routes>
             </BrowserRouter>
         );

@@ -2,19 +2,19 @@ import axios from "axios";
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarScore extends React.Component {
+class AgregarMensaje extends React.Component {
     fechaEntrega = React.createRef();
     fechaDevolucion = React.createRef();
     estatus = React.createRef();
 
     state = {
-        score: {},
+        mensaje: {},
         status: null
     }
 
     changeState = () => {
         this.setState({
-            score: {
+            mensaje: {
                 fechaEntrega: this.fechaEntrega.current.value,
                 fechaDevolucion: this.fechaDevolucion.current.value,
                 estatus: this.estatus.current.value
@@ -24,13 +24,13 @@ class AgregarScore extends React.Component {
         console.log(this.state);
     }
 
-    agregarScore = (e) => {
+    agregarMensaje = (e) => {
         e.preventDefault();
         console.log(this.fechaEntrega.current.value);
         console.log(this.fechaDevolucion.current.value);
         console.log(this.estatus.current.value);
         this.changeState();
-        axios.post("http://localhost:3000/api/agregarScore", this.state.score)
+        axios.post("http://localhost:3000/api/agregarMensaje", this.state.mensaje)
             .then(res => {
                 this.setState({
                     status: "success",
@@ -42,12 +42,12 @@ class AgregarScore extends React.Component {
     }
     render() {
         if (this.state.status === "success") {
-            return <Navigate to="/Scores" />
+            return <Navigate to="/Mensajes" />
         }
         return (
             <React.Fragment>
-                <h1>AgregarScore</h1>
-                <form onSubmit={this.agregarScore}>
+                <h1>AgregarMensaje</h1>
+                <form onSubmit={this.agregarMensaje}>
                     <div className="mb-3">
                         <label for="fechaEntrega" className="form-label">Fecha_Entrega</label>
                         <input type="datetime-local" className="form-control" id="fechaEntrega" placeholder="Digite su fecha de entrega en formato: 2022-09-09T00:00:00" name="fechaEntrega" ref={this.fechaEntrega} onChange={this.changeState} />
@@ -67,4 +67,4 @@ class AgregarScore extends React.Component {
     }
 }
 
-export default AgregarScore;
+export default AgregarMensaje;

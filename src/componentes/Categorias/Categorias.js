@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 
-class Scores extends Component {
+class Categorias extends Component {
     state = {
-        scores: []
+        categorias: []
     }
 
     componentWillMount() {
-        this.mostrarScores();
+        this.mostrarCategorias();
     }
 
-    mostrarScores = () => {
-        axios.get("http://localhost:3000/api/mostrarScores")
+    mostrarCategorias = () => {
+        axios.get("http://localhost:3000/api/mostrarCategorias")
             .then(res => {
-                console.log("Scores");
+                console.log("Categorias");
                 console.log(res.data.doc);
                 this.setState({
-                    scores: res.data.doc
+                    categorias: res.data.doc
                 });
             })
             .catch(error => {
@@ -26,8 +26,8 @@ class Scores extends Component {
             })
     }
 
-    eliminarScore = (id) => {
-        axios.delete("http://localhost:3000/api/eliminarScore/" + id)
+    eliminarCategoria = (id) => {
+        axios.delete("http://localhost:3000/api/eliminarCategoria/" + id)
             .then(res => {
                 this.setState({
                     status: "delete"
@@ -36,18 +36,18 @@ class Scores extends Component {
                 //window.location.reload(true);
 
                 swal(
-                    "Score Eliminado",
-                    "El Score se Elimino Correctamente",
+                    "Categoria Eliminado",
+                    "El Categoria se Elimino Correctamente",
                     "success"
                 )
             })
     }
     render() {
-        console.log(this.state.scores);
+        console.log(this.state.categorias);
         return (
             <React.Fragment>
-                <h1>Scores</h1>
-                <Link to="/agregarScore" className="btn btn-dark">Agregar Score</Link>
+                <h1>Categorias</h1>
+                <Link to="/agregarCategoria" className="btn btn-dark">Agregar Categoria</Link>
                 <table className="table">
                     <thead>
                         <tr>
@@ -59,19 +59,19 @@ class Scores extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.scores.map((score) => {
+                            this.state.categorias.map((categoria) => {
                                 return (
                                     <React.Fragment>
                                         <tr>
-                                            <td>{score._id}</td>
-                                            <td>{score.fechaEntrega}</td>
-                                            <td>{score.fechaDevolucion}</td>
-                                            <td>{score.estatus}</td>
+                                            <td>{categoria._id}</td>
+                                            <td>{categoria.fechaEntrega}</td>
+                                            <td>{categoria.fechaDevolucion}</td>
+                                            <td>{categoria.estatus}</td>
                                             <td>
-                                                <Link to={"/editarScore/" + score._id} className="btn btn-success">Editar</Link>
+                                                <Link to={"/editarCategoria/" + categoria._id} className="btn btn-success">Editar</Link>
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.eliminarScore(score._id)
+                                                        this.eliminarCategoria(categoria._id)
                                                     }
                                                 }>
                                                     Eliminar
@@ -89,4 +89,4 @@ class Scores extends Component {
     }
 }
 
-export default Scores;
+export default Categorias;
