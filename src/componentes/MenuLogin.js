@@ -75,8 +75,8 @@ class MenuLogin extends React.Component {
                         </ul>
                         <form className="d-flex">
                             <button className="btn btn-outline-danger form-control me-2" type="submit"><LogoutButton /></button>
-                            <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
-                            <button className="btn btn-outline-info" type="submit">Buscar</button>
+                            {/* <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
+                            <button className="btn btn-outline-info" type="submit">Buscar</button> */}
                         </form>
                     </div>
                 </div>

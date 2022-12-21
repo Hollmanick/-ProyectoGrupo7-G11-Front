@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Alquileres from "./componentes/Alquileres/Alquileres";
 import AgregarAlquiler from "./componentes/Alquileres/AgregarAlquiler";
 import EditarAlquiler from "./componentes/Alquileres/EditarAlquiler";
+import EliminarAlquiler from "./componentes/Alquileres/EliminarAlquiler";
 import Autos from "./componentes/Autos/Autos";
 import AgregarAuto from "./componentes/Autos/AgregarAuto";
 import EditarAuto from "./componentes/Autos/EditarAuto";
@@ -29,6 +30,7 @@ class Rutas extends Component {
                     <Route path="/mostrarAlquileres" element={<Alquileres />} />
                     <Route path="/agregarAlquiler" element={<AgregarAlquiler />} />
                     <Route path="/editarAlquiler/:id" element={<EditarAlquiler />} />
+                    <Route path="/eliminarAlquiler/:id" element={<EliminarAlquiler />} />
                     <Route path="/mostrarAutos" element={<Autos />} />
                     <Route path="/agregarAuto" element={<AgregarAuto />} />
                     <Route path="/editarAuto/:id" element={<EditarAuto />} />
