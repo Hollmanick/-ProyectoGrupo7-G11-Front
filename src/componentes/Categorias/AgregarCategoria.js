@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarCategoria extends React.Component {
+class AgregarCategoria extends Component {
     nombre = React.createRef();    
     descripcion = React.createRef();
 
@@ -40,7 +41,7 @@ class AgregarCategoria extends React.Component {
 
         try {
             console.log("body enviado", this.state.categoria)
-            const response = await fetch('http://localhost:3000/api/agregarCategoria', {
+            const response = await fetch(`${baseUrl}/agregarCategoria`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

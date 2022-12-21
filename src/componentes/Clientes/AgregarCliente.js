@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarCliente extends React.Component {    
+class AgregarCliente extends Component {    
     correo = React.createRef();
     contrasena = React.createRef();
     nombre = React.createRef();
@@ -48,7 +49,7 @@ class AgregarCliente extends React.Component {
 
         try {
             console.log("body enviado", this.state.cliente)
-            const response = await fetch('http://localhost:3000/api/agregarCliente', {
+            const response = await fetch(`${baseUrl}/agregarCliente`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

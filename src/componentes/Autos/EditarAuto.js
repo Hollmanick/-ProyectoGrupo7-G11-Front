@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -29,7 +30,7 @@ class EditarAuto extends Component {
     }
 
     mostrarAuto = (id) => {
-        axios.get("http://localhost:3000/api/mostrarAuto/" + id)
+        axios.get(`${baseUrl}/mostrarAuto/${id}`)
             .then(res => {
                 this.setState({
                     auto: res.data.data
@@ -56,7 +57,7 @@ class EditarAuto extends Component {
             descripcion: this.descripcion.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarAuto/" + this.autoId, auto)
+        axios.put(`${baseUrl}/editarAuto/${this.autoId}`, auto)
             .then(res => {
                 this.setState({
                     status: "success",

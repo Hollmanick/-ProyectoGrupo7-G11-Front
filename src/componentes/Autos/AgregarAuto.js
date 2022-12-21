@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
+import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-class AgregarAuto extends React.Component {
+class AgregarAuto extends Component {
     nombre = React.createRef();
     marca = React.createRef();
     ahno = React.createRef();
@@ -46,7 +47,7 @@ class AgregarAuto extends React.Component {
 
         try {
             console.log("body enviado", this.state.auto)
-            const response = await fetch('http://localhost:3000/api/agregarAuto', {
+            const response = await fetch(`${baseUrl}/agregarAuto`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

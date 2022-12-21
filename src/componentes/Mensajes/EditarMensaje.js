@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -27,7 +28,7 @@ class EditarMensaje extends Component {
     }
 
     mostrarMensaje = (id) => {
-        axios.get("http://localhost:3000/api/mostrarMensaje/" + id)
+        axios.get(`${baseUrl}/mostrarMensaje/${id}`)
             .then(res => {
                 this.setState({
                     mensaje: res.data.data
@@ -50,7 +51,7 @@ class EditarMensaje extends Component {
             descripcion: this.descripcion.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarMensaje/" + this.mensajeId, mensaje)
+        axios.put(`${baseUrl}/editarMensaje/${this.mensajeId}`, mensaje)
             .then(res => {
                 this.setState({
                     status: "success",
