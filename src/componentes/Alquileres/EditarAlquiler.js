@@ -2,6 +2,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
+import { baseUrl } from "../Url";
 
 class EditarAlquiler extends Component {
     path = null;
@@ -28,7 +29,7 @@ class EditarAlquiler extends Component {
     }
 
     mostrarAlquiler = (id) => {
-        axios.get("http://localhost:3000/api/mostrarAlquiler/" + id)
+        axios.get(`${baseUrl}/mostrarAlquiler/${id}`)
             .then(res => {
                 this.setState({
                     alquiler: res.data.data
@@ -53,7 +54,7 @@ class EditarAlquiler extends Component {
             estatus: this.estatus.current.value
         }
 
-        axios.put("http://localhost:3000/api/editarAlquiler/" + this.alquilerId, alquiler)
+        axios.put(`${baseUrl}/editarAlquiler/${this.alquilerId}`, alquiler)
             .then(res => {
                 this.setState({
                     status: "success",

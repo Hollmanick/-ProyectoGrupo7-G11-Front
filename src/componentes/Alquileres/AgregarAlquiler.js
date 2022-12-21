@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import swal from "sweetalert";
 import { Navigate } from "react-router-dom";
+import { baseUrl } from "../Url";
 
 class AgregarAlquiler extends React.Component {
     fechaEntrega = React.createRef();
@@ -43,7 +44,7 @@ class AgregarAlquiler extends React.Component {
 
         try {
             console.log("body enviado", this.state.alquiler)
-            const response = await fetch('http://localhost:3000/api/agregarAlquiler', {
+            const response = await fetch(`${baseUrl}/agregarAlquiler`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

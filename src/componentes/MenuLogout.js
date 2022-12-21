@@ -6,14 +6,14 @@ class MenuLogout extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark .navbar-nav">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/">Grupo7-G11</a>
+                    <a className="navbar-brand" href="/">GRUPO SEVEN</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarDropdownnavbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                         <form>
-                            <button className="btn btn-outline-success" type="submit"><LoginButton /></button>
+                            <LoginButton />
                         </form>
                     </div>
                 </div>

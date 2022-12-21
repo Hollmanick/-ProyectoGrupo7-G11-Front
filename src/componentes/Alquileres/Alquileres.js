@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { baseUrl } from "../Url";
 import { Navigate } from "react-router-dom";
-import EliminarAlquiler from "./EliminarAlquiler";
 
 class Alquileres extends Component {
     state = {
@@ -16,7 +16,7 @@ class Alquileres extends Component {
     }
 
     mostrarAlquileres = () => {
-        axios.get("http://localhost:3000/api/mostrarAlquileres")
+        axios.get(`${baseUrl}/mostrarAlquileres`)
             .then(res => {
                 console.log("Alquileres");
                 console.log(res.data.data);
@@ -29,22 +29,32 @@ class Alquileres extends Component {
             })
     }
 
-    // eliminarAlquiler = (id) => {
-    //     axios.delete("http://localhost:3000/api/eliminarAlquiler/" + id)
-    //         .then(res => {
-    //             this.setState({
-    //                 status: "delete"
-    //             });                
-
-    //             swal(
-    //                 "Alquiler Eliminado",
-    //                 "El Alquiler se Elimino Correctamente",
-    //                 "success"                                                
-    //             )
+    eliminarAlquiler = (id) => {
+        axios.delete(`${baseUrl}/eliminarAlquiler/${id}`)
+            .then(res => {
+                this.setState({
+                    status: "delete"
+                }); 
                 
-    //             // window.location.reload(true)
-    //         })
-    // }
+                swal(
+                    "Alquiler Eliminado",
+                    "El Alquiler se Elimino Correctamente",
+                    "success"                                                
+                )
+
+                // if (this.state.status === "delete") {
+                //     swal(
+                //         "Alquiler Editado",
+                //         "El Alquiler se Elimino Correctamente",
+                //         "success"                                                
+                //     )
+                //     return <Navigate to="/mostrarAlquileres" />
+                // }
+                
+                // window.location.reload(true)
+            })
+    }
+
     render() {                             
         console.log(this.state.alquileres);
         return (
@@ -73,10 +83,9 @@ class Alquileres extends Component {
                                             <td>{alquiler.estatus}</td>
                                             <td>
                                                 <Link to={"/editarAlquiler/" + alquiler._id} className="btn btn-success">Editar</Link>
-                                                {/* <Link to={"/eliminarAlquiler/" + alquiler._id} className="btn btn-danger">Eliminar</Link> */}                                                
                                                 <button className="btn btn-danger ms-3" onClick={
                                                     () => {
-                                                        this.EliminarAlquiler(alquiler._id)                                                        
+                                                        this.eliminarAlquiler(alquiler._id)                                                        
                                                     }
                                                 }>
                                                     Eliminar
