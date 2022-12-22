@@ -20,6 +20,7 @@ class Autos extends Component {
         axios.get(`${baseUrl}/mostrarAutos`)
             .then(res => {
                 console.log("Autos");
+                console.log(`peticion get realizada a: ${baseUrl}/mostrarAutos`)
                 console.log(res.data.data);
                 this.setState({
                     autos: res.data.data
