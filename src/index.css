@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@1,700&family=Koulen&family=Unbounded:wght@600&display=swap');
+
+body, html {
+  margin: 0;
+  font-family: 'Unbounded', cursive;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  /* background: linear-gradient(#040404, #000000); */
+}
+
+
+code {
+  font-family: 'Koulen', cursive,
+    monospace;
+}
