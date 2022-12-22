@@ -58,6 +58,7 @@ class Mensajes extends Component {
                             <td>Id</td>
                             <td>Titulo</td>
                             <td>Descripcion</td>
+                            <td>Accion</td>
                         </tr>
                     </thead>
                     <tbody>

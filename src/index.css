@@ -1,13 +1,15 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@1,700&family=Koulen&family=Unbounded:wght@600&display=swap');
+
+body, html {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Unbounded', cursive;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  /* background: linear-gradient(#040404, #000000); */
 }
 
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Koulen', cursive,
     monospace;
 }

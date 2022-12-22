@@ -69,6 +69,7 @@ class Alquileres extends Component {
                             <td>Fecha Entrega</td>
                             <td>Fecha Devolucion</td>
                             <td>Estatus</td>
+                            <td>Accion</td>
                         </tr>
                     </thead>
                     <tbody>

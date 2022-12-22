@@ -3,7 +3,7 @@ import swal from "sweetalert";
 import { baseUrl } from "../Url";
 import { Link } from "react-router-dom";
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 class Clientes extends Component {
     state = {
@@ -55,22 +55,23 @@ class Clientes extends Component {
                 <table className="table">
                     <thead>
                         <tr>
+                            <td>Imagen</td>
                             <td>Id</td>
                             <td>Correo</td>
-                            <td>Contraseña</td>
                             <td>Nombre</td>
                             <td>Edad</td>
+                            <td>Accion</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.clientes.map((cliente) => {
+                            this.state.clientes.map((cliente,i) => {
                                 return (
                                     <React.Fragment>
-                                        <tr>
+                                        <tr key={i}>
+                                            <img src={cliente.img} style={{"max-height": "50px", "max-width": "50px" }}/>
                                             <td>{cliente._id}</td>
                                             <td>{cliente.correo}</td>
-                                            <td>{cliente.contrasena}</td>
                                             <td>{cliente.nombre}</td>
                                             <td>{cliente.edad}</td>
                                             <td>

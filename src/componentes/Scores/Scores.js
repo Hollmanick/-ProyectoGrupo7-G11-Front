@@ -58,6 +58,7 @@ class Scores extends Component {
                             <td>Id</td>
                             <td>Score</td>
                             <td>Descripcion</td>
+                            <td>Accion</td>
                         </tr>
                     </thead>
                     <tbody>

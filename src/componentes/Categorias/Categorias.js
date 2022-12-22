@@ -58,6 +58,7 @@ class Categorias extends Component {
                             <td>Id</td>
                             <td>Nombre</td>
                             <td>Descripcion</td>
+                            <td>Accion</td>
                         </tr>
                     </thead>
                     <tbody>
